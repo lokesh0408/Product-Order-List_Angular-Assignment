@@ -1,0 +1,39 @@
+<div class="product-order-list">
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+          <td>
+            <mat-form-field appearance="fill">
+              <mat-select placeholder="Choose Product" [(value)]="product.name">
+                <mat-option *ngFor="let option of productOptions" [value]="option">
+                  {{ option }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field appearance="fill">
+              <mat-select placeholder="Choose Quantity" [(value)]="product.quantity">
+                <mat-option *ngFor="let q of quantities" [value]="q">
+                  {{ q }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+          <td>
+            <button (click)="addToOrder(product)">Add to Order</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <app-order-summary *ngIf="orderVisible" [order]="order"></app-order-summary>
+  </div>
+  
